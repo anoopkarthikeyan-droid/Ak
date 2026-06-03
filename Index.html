@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agro Farm — Fruit Plant Nursery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #27500A;
+      --green-mid: #3B6D11;
+      --green-light: #EAF3DE;
+      --text-primary: #1a1a1a;
+      --text-secondary: #555;
+      --text-tertiary: #999;
+      --border: rgba(0,0,0,0.12);
+      --bg-primary: #ffffff;
+      --bg-secondary: #f7f7f5;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 0 1rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--green-mid);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon i { font-size: 15px; color: #fff; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .btn-outline {
+      font-size: 13px;
+      padding: 7px 18px;
+      border: 0.5px solid rgba(0,0,0,0.3);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .btn-outline:hover { background: var(--bg-secondary); }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 0 4rem;
+      max-width: 640px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .eyebrow-line {
+      width: 24px;
+      height: 1px;
+      background: var(--green-mid);
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 52px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .subhead {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .btn-primary {
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 100px;
+      background: var(--green-mid);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover { background: var(--green-dark); }
+
+    .text-link {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .text-link:hover { color: var(--text-primary); }
+
+    hr { border: none; border-top: 0.5px solid var(--border); }
+
+    /* LOGOS */
+    .logos-row {
+      padding: 2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .logos-label {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+    }
+
+    .logos {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-item {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 0.04em;
+    }
+
+    /* SERVICES */
+    .services { padding: 4rem 0; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 2.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .service-item {
+      padding: 1.75rem 1.5rem 1.75rem 0;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .service-item.bordered {
+      padding-left: 1.5rem;
+      border-left: 0.5px solid var(--border);
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--green-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .service-icon i { font-size: 18px; color: var(--green-mid); }
+
+    .service-num {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* STATS */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      margin: 1rem 0 4rem;
+    }
+
+    .stat {
+      padding: 2rem 0;
+      border-right: 0.5px solid var(--border);
+    }
+
+    .stat:last-child { border-right: none; }
+    .stat.padded { padding-left: 2rem; }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 40px;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      color: var(--green-mid);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* PLANTS */
+    .work { padding: 3rem 0 4rem; }
+
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+    }
+
+    .work-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .work-card { background: var(--bg-primary); padding: 2rem; }
+
+    .work-card-tag {
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 2.5rem;
+    }
+
+    .work-card-img {
+      width: 100%;
+      height: 120px;
+      background: var(--green-light);
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .work-card-img i { font-size: 36px; color: var(--green-mid); }
+
+    .work-card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      margin-bottom: 0.5rem;
+    }
+
+    .work-card-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* CTA BLOCK */
+    .cta-block {
+      padding: 4rem 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 0.5px solid var(--border);
+      gap: 2rem;
+    }
+
+    .cta-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 38px;
+      line-height: 1.15;
+      max-width: 480px;
+    }
+
+    .cta-heading em {
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-item.bordered { padding-left: 0; border-left: none; }
+      .stat-row { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 0.5px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .stat.padded { padding-left: 0; }
+      .work-grid { grid-template-columns: 1fr; }
+      .cta-block { flex-direction: column; align-items: flex-start; }
+      .cta-heading { font-size: 28px; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <div class="logo">
+      <div class="logo-icon"><i class="ti ti-plant-2" aria-hidden="true"></i></div>
+      Agro Farm
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Nursery</a></li>
+      <li><a href="#">Plants</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="btn-outline">Visit Us</button>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow"><span class="eyebrow-line"></span> Fruit Plant Nursery — Est. 2020</p>
+    <h1>Where every harvest<br>begins with a <em>great plant.</em></h1>
+    <p class="subhead">Agro Farm is a trusted fruit plant nursery offering healthy, high-yield saplings nurtured with care — for home gardens, farms, and commercial growers alike.</p>
+    <div class="cta-row">
+      <a href="#plants" class="btn-primary">Browse Plants <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      <a href="#about" class="text-link">Our story <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <hr>
+
+  <div class="logos-row">
+    <span class="logos-label">Supplied to</span>
+    <div class="logos">
+      <span class="logo-item">Kerala Farms</span>
+      <span class="logo-item">GreenRoot Co.</span>
+      <span class="logo-item">Harvest Hub</span>
+      <span class="logo-item">NaturaNest</span>
+      <span class="logo-item">FreshGrove</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <section class="services">
+    <p class="section-label">What we offer</p>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon"><i class="ti ti-seedling" aria-hidden="true"></i></div>
+        <p class="service-num">01</p>
+        <h3 class="service-title">Sapling Supply</h3>
+        <p class="service-desc">Healthy, grafted fruit plant saplings ready for transplant — mango, guava, jackfruit, banana & more.</p>
+      </div>
+      <div class="service-item bordered">
+        <div class="service-icon"><i class="ti ti-garden-cart" aria-hidden="true"></i></div>
+        <p class="service-num">02</p>
+        <h3 class="service-title">Custom Orders</h3>
+        <p class="service-desc">Bulk orders for commercial farmers and estates, with variety selection and delivery support.</p>
+      </div>
+      <div class="service-item bordered">
+        <div class="service-icon"><i class="ti ti-messages" aria-hidden="true"></i></div>
+        <p class="service-num">03</p>
+        <h3 class="service-title">Expert Guidance</h3>
+        <p class="service-desc">Free consultation on soil preparation, spacing, irrigation, and care for optimal fruit yield.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stat-row">
+    <div class="stat">
+      <p class="stat-num">50+</p>
+      <p class="stat-label">Fruit varieties</p>
+    </div>
+    <div class="stat padded">
+      <p class="stat-num">10k+</p>
+      <p class="stat-label">Plants delivered</p>
+    </div>
+    <div class="stat padded">
+      <p class="stat-num">500+</p>
+      <p class="stat-label">Happy growers</p>
+    </div>
+  </div>
+
+  <section class="work" id="plants">
+    <div class="work-header">
+      <h2 class="work-title">Popular plants</h2>
+      <a href="#" class="text-link">View full catalogue <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-card-img"><i class="ti ti-trees" aria-hidden="true"></i></div>
+        <p class="work-card-tag">Tropical Fruit</p>
+        <h3 class="work-card-title">Mango (Alphonso)</h3>
+        <p class="work-card-sub">Grafted saplings, fruit-bearing in 2–3 years.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-card-img"><i class="ti ti-plant" aria-hidden="true"></i></div>
+        <p class="work-card-tag">Year-round Yield</p>
+        <h3 class="work-card-title">Guava (Thai Pink)</h3>
+        <p class="work-card-sub">High-yield variety, ideal for home gardens.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-card-img"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+        <p class="work-card-tag">Native Fruit</p>
+        <h3 class="work-card-title">Jackfruit</h3>
+        <p class="work-card-sub">Hardy, fast-growing trees suited to Kerala soil.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-card-img"><i class="ti ti-garden-cart" aria-hidden="true"></i></div>
+        <p class="work-card-tag">Quick Harvest</p>
+        <h3 class="work-card-title">Banana (Nendran)</h3>
+        <p class="work-card-sub">Traditional Kerala variety, tissue culture grown.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-block">
+    <h2 class="cta-heading">Start your orchard with <em>the right roots.</em></h2>
+    <a href="#" class="btn-primary">Order Plants <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Agro Farm Fruit Plant Nursery. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
